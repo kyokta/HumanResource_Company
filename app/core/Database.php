@@ -11,9 +11,6 @@ class Database {
 
     public function __construct()
     {
-        // port database custom
-        // $dsn = 'mysql:host=' . $this->host . ';port=8111;dbname=' . $this->db_name;
-        // port database default
         $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
 
         $option = [
@@ -64,5 +61,9 @@ class Database {
     public function single(){
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function rowCount(){
+        return $this->stmt->rowCount();
     }
 }

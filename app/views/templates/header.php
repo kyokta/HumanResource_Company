@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<?= BASEURL; ?>/assetss/plugins/sidebar/css/styles.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/assetss/plugins/bootstrap-5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/assetss/plugins/select2/select2.min.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assetss/plugins/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/assetss/css/custom-styles.css">
 </head>
 
