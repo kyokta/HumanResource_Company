@@ -91,7 +91,7 @@ $(document).ready(function(){
                     $('#detail-pekerjaan').html(element.pekerjaan)
                     $('.detail-button').each(function(){
                         var oldhref = this.href
-                        var newhref = oldhref.replace(oldhref, "http://localhost/TA_MVC/public/pekerja/detail/" + element.id_pegawai)
+                        var newhref = oldhref.replace(oldhref, url + "pekerja/detail/" + element.id_pegawai)
 
                         $(this).attr("href", newhref);
                     })
@@ -140,9 +140,215 @@ $(document).ready(function(){
             }
         })
     })
-
+    $('.seksi-delete-btn').on('click', function(){
+        var id = $(this).val()
+        Swal.fire({
+            title: 'Hapus Seksi?',
+            text: "Jabatan ini akan dihapus dari data seksi",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url : url + "Seksi/deleteSeksi",
+                    data: {
+                        id_seksi: id
+                    },
+                    success: function(response) {
+                        if (response == 200){
+                            Swal.fire(
+                                'Gagal!',
+                                'Terdapat pekerja dengan seksi ini',
+                                'error'
+                            )
+                        } else {
+                            Swal.fire({
+                                title: "Berhasil",
+                                text: "Seksi berhasil dihapus",
+                                icon: "success"
+                            }).then(function(){
+                                location.reload()
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    })
 })
 
 // Jabatan
 $(document).ready(function(){
+    $('.jabatan-edit-btn').on('click', function(){
+        var id = $(this).val()
+        $.ajax({
+            type: 'post',
+            url: url + 'Jabatan/detailJabatan',
+            dataType: 'json',
+            data: {
+                id_jabatan: id
+            }, success: function(data){
+                $('#editjabatan-id').val(data['id_jabatan'])
+                $('#editjabatan-kode').val(data['kd_jabatan'])
+                $('#editjabatan-jabatan').val(data['jabatan'])
+            }
+        })
+    })
+    $('.jabatan-delete-btn').on('click', function(){
+        var id = $(this).val()
+        Swal.fire({
+            title: 'Hapus Jabatan?',
+            text: "Jabatan ini akan dihapus dari data jabatan",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url : url + "Jabatan/deleteJabatan",
+                    data: {
+                        id_jabatan: id
+                    },
+                    success: function(response) {
+                        if (response == 200){
+                            Swal.fire(
+                                'Gagal!',
+                                'Terdapat pekerja dengan jabatan ini',
+                                'error'
+                            )
+                        } else {
+                            Swal.fire({
+                                title: "Berhasil",
+                                text: "Jabatan berhasil dihapus",
+                                icon: "success"
+                            }).then(function(){
+                                location.reload()
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    })
+})
+
+// Golongan
+$(document).ready(function(){
+    $('.golongan-edit-btn').on('click', function(){
+        var id = $(this).val()
+        $.ajax({
+            type: 'post',
+            url: url + 'Golongan/detailGolongan',
+            dataType: 'json',
+            data: {
+                id_golongan: id
+            }, success: function(data){
+                $('#editgolongan-id').val(data['id_golongan'])
+                $('#editgolongan-golongan').val(data['golongan'])
+            }
+        })
+    })
+    $('.golongan-delete-btn').on('click', function(){
+        var id = $(this).val()
+        Swal.fire({
+            title: 'Hapus Golongan?',
+            text: "Golongan ini akan dihapus dari data golongan",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url : url + "Golongan/deleteGolongan",
+                    data: {
+                        id_golongan: id
+                    },
+                    success: function(response) {
+                        if (response == 200){
+                            Swal.fire(
+                                'Gagal!',
+                                'Terdapat pekerja dengan golongan ini',
+                                'error'
+                            )
+                        } else {
+                            Swal.fire({
+                                title: "Berhasil",
+                                text: "Golongan berhasil dihapus",
+                                icon: "success"
+                            }).then(function(){
+                                location.reload()
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    })
+})
+
+// Pekerjaan
+$(document).ready(function(){
+    $('.pekerjaan-edit-btn').on('click', function(){
+        var id = $(this).val()
+        $.ajax({
+            type: 'post',
+            url: url + 'Pekerjaan/detailPekerjaan',
+            dataType: 'json',
+            data: {
+                id_pekerjaan: id
+            }, success: function(data){
+                $('#editpekerjaan-id').val(data['id_pekerjaan'])
+                $('#editpekerjaan-pekerjaan').val(data['pekerjaan'])
+            }
+        })
+    })
+    $('.pekerjaan-delete-btn').on('click', function(){
+        var id = $(this).val()
+        Swal.fire({
+            title: 'Hapus Pekerjaan?',
+            text: "Pekerjaan ini akan dihapus dari data pekerjaan",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url : url + "Pekerjaan/deletePekerjaan",
+                    data: {
+                        id_pekerjaan: id
+                    },
+                    success: function(response) {
+                        if (response == 200){
+                            Swal.fire(
+                                'Gagal!',
+                                'Terdapat pekerja dengan pekerjaan ini',
+                                'error'
+                            )
+                        } else {
+                            Swal.fire({
+                                title: "Berhasil",
+                                text: "Pekerjaan berhasil dihapus",
+                                icon: "success"
+                            }).then(function(){
+                                location.reload()
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    })
 })

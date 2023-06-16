@@ -15,18 +15,43 @@ class M_jabatan {
     }
 
     public function insertData($data){
-        $sql = "INSERT INTO jabatan(jabatan) values (:jabatan)";
+        $sql = "INSERT INTO jabatan(kd_jabatan, jabatan) values (:kode, :jabatan)";
 
         $this->db->query($sql);
+        $this->db->bind('kode', $data['kd_jabatan']);
         $this->db->bind('jabatan', $data['jabatan']);
         $this->db->execute();
 
         return $this->db->rowCount();
     }
 
-    public function detailJabatan(){
-        $data = $_POST;
+    public function detailJabatan($id){
+        $sql = "SELECT * FROM jabatan where id_jabatan = $id";
 
-        print_r($data);
+        $this->db->query($sql);
+        return $this->db->single();
+    }
+
+    public function updateJabatan($data){
+        $id = $data['id_jabatan'];
+        $kode = $data['kd_jabatan'];
+        $jabatan = $data['jabatan'];
+        
+        $sql = "UPDATE jabatan
+                SET kd_jabatan = '$kode',
+                    jabatan = '$jabatan'
+                WHERE id_jabatan = $id";
+        
+        $this->db->query($sql);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function deleteJabatan($id){
+        $sql = "DELETE FROM jabatan where id_jabatan = $id";
+
+        $this->db->query($sql);
+        $this->db->execute();
     }
 }

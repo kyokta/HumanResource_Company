@@ -54,4 +54,11 @@ class M_seksi {
 
         return $this->db->rowCount();
     }
+
+    public function deleteSeksi($id){
+        $sql = "DELETE FROM seksi where id_seksi = $id";
+
+        $this->db->query($sql);
+        $this->db->execute();
+    }
 }

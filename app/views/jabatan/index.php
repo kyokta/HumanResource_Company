@@ -17,6 +17,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>No</th>
+                                <th>Kode Jabatan</th>
                                 <th>Jabatan</th>
                                 <th>Action</th>
                             </tr>
@@ -27,12 +28,13 @@
                             foreach ($data['jabatan'] as $jabatan) : ?>
                                 <tr>
                                     <td><?= $no++; ?></td>
-                                    <td class="jabatan"><?= $jabatan['jabatan']; ?></td>
+                                    <td><?= $jabatan['kd_jabatan']; ?></td>
+                                    <td><?= $jabatan['jabatan']; ?></td>
                                     <td>
-                                        <button type="button" class="btn btn-primary edit-jabatan-btn" data-bs-toggle="modal" data-bs-target="#edit-jabatan" value="<?= $jabatan['id_jabatan']; ?>">
+                                        <button type="button" class="btn btn-primary jabatan-edit-btn" data-bs-toggle="modal" data-bs-target="#edit-jabatan" value="<?= $jabatan['id_jabatan']; ?>">
                                             Edit
                                         </button>
-                                        <button type="button" class="btn btn-danger">Hapus</button>
+                                        <button type="button" class="btn btn-danger jabatan-delete-btn" value="<?= $jabatan['id_jabatan']; ?>">Hapus</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -57,10 +59,18 @@
                     <div class="col-md-12">
                         <div class="row" style="padding: 10px 0px;">
                             <div class="col-md-4">
+                                <label for="unit">Kode Jabatan</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="kd_jabatan" placeholder="Kode Jabatan">
+                            </div>
+                        </div>
+                        <div class="row" style="padding: 10px 0px;">
+                            <div class="col-md-4">
                                 <label for="unit">Jabatan</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="jabatan">
+                                <input type="text" class="form-control" name="jabatan" placeholder="Jabatan">
                             </div>
                         </div>
                     </div>
@@ -84,12 +94,20 @@
             <form action="<?= BASEURL; ?>/Jabatan/updateJabatan" method="post">
                 <div class="modal-body">
                     <div class="col-md-12">
+                        <input type="text" class="form-control" name="id_jabatan" id="editjabatan-id" hidden>
+                        <div class="row" style="padding: 10px 0px;">
+                            <div class="col-md-4">
+                                <label for="unit">Kode Jabatan</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="kd_jabatan" id="editjabatan-kode">
+                            </div>
+                        </div>
                         <div class="row" style="padding: 10px 0px;">
                             <div class="col-md-4">
                                 <label for="unit">Jabatan</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="id_jabatan" id="editjabatan-id">
                                 <input type="text" class="form-control" name="jabatan" id="editjabatan-jabatan">
                             </div>
                         </div>

@@ -39,7 +39,7 @@
                                         <button type="button" class="btn btn-primary seksi-edit-btn" data-bs-toggle="modal" data-bs-target="#edit-seksi" value="<?= $row['id_seksi']; ?>" onclick="toogleModal(this)">
                                             Edit
                                         </button>
-                                        <button type="button" class="btn btn-danger seksi-hapus-btn" value="<?= $row['id_seksi']; ?>">Hapus</button>
+                                        <button type="button" class="btn btn-danger seksi-delete-btn" value="<?= $row['id_seksi']; ?>">Hapus</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
