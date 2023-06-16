@@ -13,7 +13,13 @@ class Pekerja extends Controller
 
     public function detail($id)
     {
+        $data['seksi'] = $this->model('M_pekerja')->getSeksi();
+        $data['jabatan'] = $this->model('M_pekerja')->getJabatan();
+        $data['golongan'] = $this->model('M_pekerja')->getGolongan();
+        $data['pekerjaan'] = $this->model('M_pekerja')->getPekerjaan();
+
         $data['pekerja'] = $this->model('M_pekerja')->detailpekerja($id);
+
         $this->view('templates/header');
         $this->view('pekerja/detail-pekerja', $data);
         $this->view('templates/footer');
@@ -21,33 +27,14 @@ class Pekerja extends Controller
 
     public function tambah()
     {
+        $data['seksi'] = $this->model('M_pekerja')->getSeksi();
+        $data['jabatan'] = $this->model('M_pekerja')->getJabatan();
+        $data['golongan'] = $this->model('M_pekerja')->getGolongan();
+        $data['pekerjaan'] = $this->model('M_pekerja')->getPekerjaan();
+
         $this->view('templates/header');
-        $this->view('pekerja/tambah-pekerja');
+        $this->view('pekerja/tambah-pekerja', $data);
         $this->view('templates/footer');
-    }
-
-    public function getSeksi()
-    {
-        $seksi = $this->model('M_pekerja')->getSeksi();
-        echo json_encode($seksi);
-    }
-
-    public function getJabatan()
-    {
-        $jabatan = $this->model('M_pekerja')->getJabatan();
-        echo json_encode($jabatan);
-    }
-
-    public function getGolongan()
-    {
-        $golongan = $this->model('M_pekerja')->getGolongan();
-        echo json_encode($golongan);
-    }
-
-    public function getPekerjaan()
-    {
-        $pekerjaan = $this->model('M_pekerja')->getPekerjaan();
-        echo json_encode($pekerjaan);
     }
 
     public function tambahpekerja()
@@ -87,5 +74,14 @@ class Pekerja extends Controller
 
         $detail = $this->model('M_pekerja')->getDetail($id);
         echo json_encode($detail);
+    }
+    
+    public function updatepekerja(){
+        $data = $_POST;
+        $id = $data['id_pegawai'];
+        
+        $old_data = $this->model('M_pekerja')->getDetail($id)[0];
+        $compare = array_diff($old_data, $data);
+        print_r($compare);
     }
 }

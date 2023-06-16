@@ -1,6 +1,6 @@
 <?php
 
-define('BASEURL', 'http://localhost/TA_MVC/public');
+define('BASEURL', 'http://localhost/HumanResource_Company/public');
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');

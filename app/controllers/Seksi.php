@@ -9,13 +9,28 @@ class Seksi extends Controller {
         $this->view('templates/footer');
     }
 
-    public function getDepartemen(){
-        $departemen = $this->model('M_seksi')->getDepartemen();
-        echo json_encode($departemen);
-    }
-
     public function tambahSeksi(){
         $data = $_POST;
-        var_dump($data);
+
+        if ($this->model('M_seksi')->insertData($data) > 0){
+            header('Location: '. BASEURL . '/Seksi/index');
+            exit;
+        } 
+    }
+
+    public function editSeksi(){
+        $data = $_POST['id_seksi'];
+        
+        $detail = $this->model('M_seksi')->getSeksi($data);
+        echo json_encode($detail);
+    }
+    
+    public function updateSeksi(){
+        $data = $_POST;
+        
+        if($this->model('M_seksi')->updateSeksi($data) > 0){
+            header('Location: ' . BASEURL . '/Seksi/index');
+            exit;
+        }
     }
 }

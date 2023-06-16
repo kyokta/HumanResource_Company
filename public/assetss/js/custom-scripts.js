@@ -5,102 +5,6 @@ var url = str[0] + '//' + str[2] + '/' + str[3] + '/' + str[4] + '/'
 
 // pekerja
 $(document).ready(function(){
-    $('#tambahpekerja-seksi').select2({
-        searching: false,
-        placeholder: "Seksi",
-        allowClear: true,
-        ajax: {
-            url: url + 'Pekerja/getSeksi',
-            dataType: 'json',
-            delay: 500,
-            type: 'GET',
-            data: function(params) {
-                return {
-                    term: params.term
-                }
-            },
-            processResults: function(data) {
-                return {
-                    results: $.map(data, function(obj) {
-                        return { id: obj.id_seksi, text: obj.seksi };
-                    })
-                }
-            }
-        }
-    })
-
-    $('#tambahpekerja-jabatan').select2({
-        searching: false,
-        placeholder: "Jabatan",
-        allowClear: true,
-        ajax: {
-            url : url + 'Pekerja/getJabatan',
-            dataType: 'json',
-            delay: 500,
-            type: 'GET',
-            data: function(params) {
-                return {
-                    term: params.term
-                }
-            },
-            processResults: function(data) {
-                return {
-                    results: $.map(data, function(obj) {
-                        return {id : obj.id_jabatan, text: obj.kd_jabatan + ' - ' + obj.jabatan}
-                    })
-                }
-            }
-        }
-    })
-
-    $('#tambahpekerja-golongan').select2({
-        searching: false,
-        placeholder: "Golongan",
-        allowClear: true,
-        ajax: {
-            url : url + 'Pekerja/getGolongan',
-            dataType: 'json',
-            delay: 500,
-            type: 'GET',
-            data: function(params) {
-                return {
-                    term: params.term
-                }
-            },
-            processResults: function(data) {
-                return {
-                    results: $.map(data, function(obj) {
-                        return {id : obj.id_golongan, text: obj.golongan}
-                    })
-                }
-            }
-        }
-    })
-
-    $('#tambahpekerja-pekerjaan').select2({
-        searching: false,
-        placeholder: "Pekerjaan",
-        allowClear: true,
-        ajax: {
-            url : url + 'Pekerja/getPekerjaan',
-            dataType: 'json',
-            delay: 500,
-            type: 'GET',
-            data: function(params) {
-                return {
-                    term: params.term
-                }
-            },
-            processResults: function(data) {
-                return {
-                    results: $.map(data, function(obj) {
-                        return {id : obj.id_pekerjaan, text: obj.pekerjaan}
-                    })
-                }
-            }
-        }
-    })
-
     $('#tambahpekerja-submit').on('click', function(e){
        e .preventDefault();
         var form = $(this).parents('form')
@@ -185,37 +89,60 @@ $(document).ready(function(){
                     $('#detail-jabatan').html(element.jabatan)
                     $('#detail-golongan').html(element.golongan)
                     $('#detail-pekerjaan').html(element.pekerjaan)
+                    $('.detail-button').each(function(){
+                        var oldhref = this.href
+                        var newhref = oldhref.replace(oldhref, "http://localhost/TA_MVC/public/pekerja/detail/" + element.id_pegawai)
+
+                        $(this).attr("href", newhref);
+                    })
                 });
             }
         })
     })
+    $('#editpekerja-submit').on('click', function(e){
+        e .preventDefault();
+         var form = $(this).parents('form')
+         Swal.fire({
+             title: 'Data yakin dikirim?',
+             text: "Data pekerja akan diperbaharui",
+             icon: 'warning',
+             showCancelButton: true,
+             confirmButtonColor: '#3085d6',
+             cancelButtonColor: '#d33',
+             confirmButtonText: 'Ya'
+           }).then((result) => {
+             if (result.isConfirmed) {
+                 form.submit()
+                 Swal.fire(
+                     'Berhasil',
+                     'Data telah berhasil diperbaharui',
+                     'success'
+                 )
+             }
+         })
+     })
 })
 
 // Seksi
 $(document).ready(function(){
-    $('#seksi-departemen').select2({
-        dropdownParent: $('#exampleModal'),
-        searching: false,
-        placeholder: "Departemen",
-        allowClear: true,
-        ajax: {
-            url: url + 'Seksi/getDepartemen',
+    $('.seksi-edit-btn').on('click', function(){
+        var id = $(this).val()
+        $.ajax({
+            type: 'post',
+            url : url + 'Seksi/editSeksi',
             dataType: 'json',
-            delay: 500,
-            type: 'GET',
-            data: function(params) {
-                return {
-                    term: params.term
-                }
-            },
-            processResults: function(data) {
-                return {
-                    results: $.map(data, function(obj) {
-                        return { id: obj.id_departemen, text: obj.departemen };
-                    })
-                }
+            data: {
+                id_seksi: id
+            }, success: function(data){
+                $('#editseksi-id').val(data['id_seksi'])
+                $('#editseksi-unit').val(data['unit'])
+                $('#editseksi-seksi').val(data['seksi'])
             }
-        }
-    });
+        })
+    })
 
+})
+
+// Jabatan
+$(document).ready(function(){
 })

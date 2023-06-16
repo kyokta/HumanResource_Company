@@ -65,7 +65,7 @@
             <div class="modal-body">
                 <table>
                     <tr>
-                        <td colspan="3">Data Pribadi:</td>
+                        <td colspan="3"><b>Data Pribadi:</b></td>
                     </tr>
                     <tr>
                         <td>ID Pekerja</td>
@@ -136,7 +136,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <a href="<?= BASEURL; ?>/pekerja/detail/<?= $index['id_pegawai']; ?>" type="button" class="btn btn-warning" value="<?= $index['id_pegawai']; ?>">Edit</a>
+                <a href="<?= BASEURL; ?>/pekerja/detail/" type="button" class="btn btn-warning detail-button">Edit</a>
             </div>
         </div>
     </div>

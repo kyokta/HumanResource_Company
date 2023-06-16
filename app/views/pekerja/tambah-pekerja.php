@@ -40,19 +40,39 @@
                                     <span><b>Data Perusahaan:</b></span>
                                     <div class="form-group" style="padding: 10px 0px;">
                                         <label for="seksi">Seksi</label><br>
-                                        <select name="seksi" id="tambahpekerja-seksi" style="width: 400px;" class="form-control" required></select>
+                                        <select name="seksi" style="width: 400px;" class="form-control pekerja-seksi" required>
+                                            <option value=""></option>
+                                            <?php foreach ($data['seksi'] as $seksi) : ?>
+                                                <option value="<?= $seksi['id']; ?>"><?= $seksi['seksi']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                     <div class="form-group" style="padding: 10px 0px;">
                                         <label for="jabatan">Jabatan</label><br>
-                                        <select name="jabatan" id="tambahpekerja-jabatan" style="width: 400px;" class="form-control" required></select>
+                                        <select name="jabatan" style="width: 400px;" class="form-control pekerja-jabatan" required>
+                                            <option value=""></option>
+                                            <?php foreach ($data['jabatan'] as $jabatan) : ?>
+                                                <option value="<?= $jabatan['id']; ?>"><?= $jabatan['jabatan']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                     <div class="form-group" style="padding: 10px 0px;">
                                         <label for="golongan">Golongan</label><br>
-                                        <select name="golongan" id="tambahpekerja-golongan" style="width: 400px;" class="form-control" required></select>
+                                        <select name="golongan" style="width: 400px;" class="form-control pekerja-golongan" required>
+                                            <option value=""></option>
+                                            <?php foreach ($data['golongan'] as $golongan) : ?>
+                                                <option value="<?= $golongan['id']; ?>"><?= $golongan['golongan']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                     <div class="form-group" style="padding: 10px 0px;">
                                         <label for="pekerjaan">Pekerjaan</label><br>
-                                        <select name="pekerjaan" id="tambahpekerja-pekerjaan" style="width: 400px;" class="form-control" required></select>
+                                        <select name="pekerjaan" style="width: 400px;" class="form-control pekerja-pekerjaan" required>
+                                            <option value=""></option>
+                                            <?php foreach ($data['pekerjaan'] as $pekerjaan) : ?>
+                                                <option value="<?= $pekerjaan['id']; ?>"><?= $pekerjaan['pekerjaan']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

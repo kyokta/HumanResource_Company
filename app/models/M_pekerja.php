@@ -29,25 +29,25 @@ class M_pekerja
 
     public function getSeksi()
     {
-        $this->db->query("SELECT id_seksi, seksi FROM seksi;");
+        $this->db->query("SELECT id_seksi as id, seksi FROM seksi;");
         return $this->db->resultSet();
     }
 
     public function getJabatan()
     {
-        $this->db->query("select * from jabatan j");
+        $this->db->query("SELECT id_jabatan as id, concat(kd_jabatan, ' - ', jabatan) as jabatan from jabatan j ");
         return $this->db->resultSet();
     }
 
     public function getGolongan()
     {
-        $this->db->query("select * from golongan g");
+        $this->db->query("SELECT id_golongan id, golongan from golongan");
         return $this->db->resultSet();
     }
 
     public function getPekerjaan()
     {
-        $this->db->query("select * from pekerjaan p");
+        $this->db->query("SELECT id_pekerjaan id, pekerjaan from pekerjaan");
         return $this->db->resultSet();
     }
 
