@@ -1,10 +1,10 @@
-<section class="container">
+<section class="content">
     <div class="row">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="text">
-                        <h1><b>Gaji</b></h1>
+                    <div class="text-center">
+                        <h1 style="margin-top: 50px;"><b>Gaji</b></h1>
                     </div>
                 </div>
             </div>
@@ -16,12 +16,12 @@
                     <br>
                     <br>
                     <table class="table">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
-                                <td>No</td>
-                                <td>Nama Pekerja</td>
-                                <td>Jumlah Gaji (kali)</td>
-                                <td>Action</td>
+                                <td style="text-align: center;"><b>No</b></td>
+                                <td style="text-align: center;"><b>Nama Pekerja</b></td>
+                                <td style="text-align: center;"><b>Jumlah Gaji (kali)</b></td>
+                                <td style="text-align: center;"><b>Action</b></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,16 +29,18 @@
                             $no = 1;
                             foreach ($data['gaji'] as $gaji) : ?>
                                 <tr>
-                                    <td><?= $no++; ?></td>
-                                    <td><?= $gaji['nama']; ?></td>
-                                    <td><?= $gaji['jumlah']; ?></td>
-                                    <td>
-                                        <a href="<?= BASEURL; ?>/Gaji/detailGaji/<?= $gaji['id_pegawai'];?>" class="btn btn-primary">Detail</a>
+                                    <td style="text-align: center;"><?= $no++; ?></td>
+                                    <td style="text-align: center;"><?= $gaji['nama']; ?></td>
+                                    <td style="text-align: center;"><?= $gaji['jumlah']; ?></td>
+                                    <td style="text-align: center;">
+                                        <a href="<?= BASEURL; ?>/Gaji/detailGaji/<?= $gaji['id_pegawai']; ?>" class="btn btn-primary">Detail</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <br><br>
+                    <a href="<?= BASEURL; ?>" class="btn btn-warning">Kembali</a>
                 </div>
             </div>
         </div>

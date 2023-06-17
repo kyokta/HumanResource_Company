@@ -1,10 +1,10 @@
-<section class="container">
+<section class="content">
     <div class="row">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="text">
-                        <h1><b>Detail Cuti</b></h1>
+                    <div class="text-center">
+                        <h1 style="margin-top: 50px;"><b>Detail Cuti</b></h1>
                     </div>
                 </div>
             </div>
@@ -14,14 +14,14 @@
                         <div class="col-md-12">
                             <table>
                                 <tr>
-                                    <td>ID Pegawai</td>
-                                    <td>:</td>
-                                    <td><?= $data['id']; ?></td>
+                                    <td><b>ID Pegawai</b></td>
+                                    <td><b>:</b></td>
+                                    <td><b><?= $data['id']; ?></b></td>
                                 </tr>
                                 <tr>
-                                    <td>Nama Pegawai</td>
-                                    <td>:</td>
-                                    <td><?= $data['nama']; ?></td>
+                                    <td><b>Nama Pegawai</b></td>
+                                    <td><b>:</b></td>
+                                    <td><b><?= $data['nama']; ?></b></td>
                                 </tr>
                             </table>
                         </div>
@@ -31,11 +31,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table">
-                                <thead>
+                                <thead class="table-dark">
                                     <tr>
-                                        <td>No</td>
-                                        <td>Tanggal Cuti</td>
-                                        <td>Alasan</td>
+                                        <th style="text-align: center;"><b>No</b></th>
+                                        <th style="text-align: center;"><b>Tanggal Cuti</b></th>
+                                        <th style="text-align: center;"><b>Alasan</b></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,9 +43,9 @@
                                     $no = 1;
                                     foreach ($data['cuti'] as $cuti):?>
                                     <tr>
-                                        <td><?= $no++; ?></td>
-                                        <td><?= $cuti['tanggal_cuti']; ?></td>
-                                        <td><?= $cuti['alasan']; ?></td>
+                                        <td style="text-align: center;"><?= $no++; ?></td>
+                                        <td style="text-align: center;"><?= $cuti['tanggal_cuti']; ?></td>
+                                        <td style="text-align: center;"><?= $cuti['alasan']; ?></td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>

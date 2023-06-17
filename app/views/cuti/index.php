@@ -1,10 +1,10 @@
-<section class="container">
+<section class="content">
     <div class="row">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="text">
-                        <h1><b>Cuti</b></h1>
+                    <div class="text-center">
+                        <h1 style="margin-top: 50px;"><b>Cuti</b></h1>
                     </div>
                 </div>
             </div>
@@ -16,12 +16,12 @@
                     <br>
                     <br>
                     <table class="table">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
-                                <td>No</td>
-                                <td>Nama Pekerja</td>
-                                <td>Jumlah Cuti</td>
-                                <td>Action</td>
+                                <th style="text-align: center;"><b>No</b></th>
+                                <th style="text-align: center;"><b>Nama Pekerja</b></th>
+                                <th style="text-align: center;"><b>Jumlah Cuti</b></th>
+                                <th style="text-align: center;"><b>Action</b></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,16 +29,18 @@
                             $no = 1;
                             foreach ($data['cuti'] as $cuti) : ?>
                                 <tr>
-                                    <td><?= $no++; ?></td>
-                                    <td><?= $cuti['nama_lengkap']; ?></td>
-                                    <td><?= $cuti['jumlah']; ?></td>
-                                    <td>
+                                    <td style="text-align: center;"><?= $no++; ?></td>
+                                    <td style="text-align: center;"><?= $cuti['nama_lengkap']; ?></td>
+                                    <td style="text-align: center;"><?= $cuti['jumlah']; ?></td>
+                                    <td style="text-align: center;">
                                         <a href="<?= BASEURL; ?>/cuti/detailCuti/<?= $cuti['id_pekerja']; ?>" class="btn btn-primary">Detail</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <br><br>
+                    <a href="<?= BASEURL; ?>" class="btn btn-warning">Kembali</a>
                 </div>
             </div>
         </div>

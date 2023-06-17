@@ -99,29 +99,69 @@ $(document).ready(function(){
             }
         })
     })
-    $('#editpekerja-submit').on('click', function(e){
-        e .preventDefault();
-         var form = $(this).parents('form')
-         Swal.fire({
-             title: 'Data yakin dikirim?',
-             text: "Data pekerja akan diperbaharui",
-             icon: 'warning',
-             showCancelButton: true,
-             confirmButtonColor: '#3085d6',
-             cancelButtonColor: '#d33',
-             confirmButtonText: 'Ya'
-           }).then((result) => {
-             if (result.isConfirmed) {
-                form.submit()
-                Swal.fire(
-                    'Berhasil',
-                    'Data telah berhasil diperbaharui',
-                    'success'
-                )
-                location.reload()
-             }
-         })
-     })
+    $('#editpekerja-submit').on('click', function(){
+        id = $('#edit-pekerja-id').val()
+        nama = $('#edit-pekerja-nama').val()
+        tempat_lahir = $('#edit-pekerja-tmp_lahir').val()
+        tanggal_lahir = $('#edit-pekerja-tgl_lahir').val()
+        npwp = $('#edit-pekerja-npwp').val()
+        alamat = $('#edit-pekerja-alamat').val()
+        seksi = $('#edit-pekerja-seksi').val()
+        jabatan = $('#edit-pekerja-jabatan').val()
+        golongan = $('#edit-pekerja-golongan').val()
+        pekerjaan = $('#edit-pekerja-pekerjaan').val()
+        Swal.fire({
+            title: 'Edit data?',
+            text: "Data pekerja dengan ID : " + id + " akan diperbaharui.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url : url + "Pekerja/updatePekerja",
+                    data: {
+                        id_pegawai: id,
+                        nama_lengkap: nama,
+                        tempat_lahir: tempat_lahir,
+                        tanggal_lahir: tanggal_lahir,
+                        alamat: alamat,
+                        npwp: npwp,
+                        seksi: seksi,
+                        jabatan: jabatan,
+                        golongan: golongan,
+                        pekerjaan: pekerjaan
+                    },
+                    success: function(response) {
+                        if (response == 300){
+                            Swal.fire(
+                                'Gagal!',
+                                'Data tidak ada yang dirubah',
+                                'error'
+                            )
+                        } else if(response == 200) {
+                            Swal.fire(
+                                'Gagal!',
+                                'Data tidak ada yang dirubah',
+                                'error'
+                            )
+                        } else {
+                            Swal.fire({
+                                title: "Berhasil",
+                                text: "Pekerja berhasil diupdate",
+                                icon: "success"
+                            }).then(function(){
+                                window.location.href = url + "/Pekerja/index"
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    })
 })
 
 // Seksi
@@ -145,7 +185,7 @@ $(document).ready(function(){
         var id = $(this).val()
         Swal.fire({
             title: 'Hapus Seksi?',
-            text: "Jabatan ini akan dihapus dari data seksi",
+            text: "Seksi ini akan dihapus dari data seksi",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

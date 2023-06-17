@@ -18,7 +18,7 @@ class M_pekerja
         return $this->db->resultSet();
     }
 
-    public function detailpekerja($id)
+    public function detailPekerja($id)
     {
         $this->db->query("SELECT *
                           FROM pribadi p
@@ -113,11 +113,9 @@ class M_pekerja
         return $this->db->resultSet();
     }
 
-    public function updatepekerja($data, $id){
+    public function updatePekerja($data, $id){
         $sql = "UPDATE pribadi set $data where id_pegawai = '$id'";
         $this->db->query($sql);
         $this->db->execute();
-
-        return $this->db->rowCount();
     }
 }

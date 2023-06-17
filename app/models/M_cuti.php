@@ -13,6 +13,7 @@ class M_cuti
     {
         $sql = "SELECT c.id_cuti, c.id_pekerja, p.nama_lengkap, count(c.id_pekerja) jumlah  from cuti c
                 join pribadi p on p.id_pegawai = c.id_pekerja 
+                where p.status = true
                 group by c.id_pekerja";
 
         $this->db->query($sql);
@@ -21,7 +22,7 @@ class M_cuti
 
     public function getNama()
     {
-        $sql = "SELECT id_pegawai, concat(id_pegawai, ' - ', nama_lengkap) nama  from pribadi";
+        $sql = "SELECT id_pegawai, concat(id_pegawai, ' - ', nama_lengkap) nama  from pribadi where status = true";
 
         $this->db->query($sql);
         return $this->db->resultSet();

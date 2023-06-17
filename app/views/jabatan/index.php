@@ -1,10 +1,10 @@
-<div class="container">
+<section class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="text-right">
-                        <h1><b>Jabatan</b></h1>
+                    <div class="text-center">
+                        <h1 style="margin-top: 50px;"><b>Jabatan</b></h1>
                     </div>
                 </div>
             </div>
@@ -13,13 +13,14 @@
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Tambah Jabatan
                     </button>
+                    <br><br>
                     <table class="table">
-                        <thead class="thead-dark">
+                        <thead class="table-dark">
                             <tr>
-                                <th>No</th>
-                                <th>Kode Jabatan</th>
-                                <th>Jabatan</th>
-                                <th>Action</th>
+                                <th style="text-align: center;"><b>No</b></th>
+                                <th style="text-align: center;"><b>Kode Jabatan</b></th>
+                                <th style="text-align: center;"><b>Jabatan</b></th>
+                                <th style="text-align: center;"><b>Action</b></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,10 +28,10 @@
                             $no = 1;
                             foreach ($data['jabatan'] as $jabatan) : ?>
                                 <tr>
-                                    <td><?= $no++; ?></td>
-                                    <td><?= $jabatan['kd_jabatan']; ?></td>
-                                    <td><?= $jabatan['jabatan']; ?></td>
-                                    <td>
+                                    <td style="text-align: center;"><?= $no++; ?></td>
+                                    <td style="text-align: center;"><?= $jabatan['kd_jabatan']; ?></td>
+                                    <td style="text-align: center;"><?= $jabatan['jabatan']; ?></td>
+                                    <td style="text-align: center;">
                                         <button type="button" class="btn btn-primary jabatan-edit-btn" data-bs-toggle="modal" data-bs-target="#edit-jabatan" value="<?= $jabatan['id_jabatan']; ?>">
                                             Edit
                                         </button>
@@ -40,11 +41,13 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <br><br>
+                    <a href="<?= BASEURL; ?>" class="btn btn-warning">Kembali</a>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <!-- Modal Tambah Jabatan -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

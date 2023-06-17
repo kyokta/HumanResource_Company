@@ -3,8 +3,8 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="text">
-                        <h1><b>Golongan</b></h1>
+                    <div class="text-center">
+                        <h1 style="margin-top: 50px;"><b>Golongan</b></h1>
                     </div>
                 </div>
             </div>
@@ -16,11 +16,11 @@
                     <br>
                     <br>
                     <table class="table">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
-                                <th>No</th>
-                                <th>Golongan</th>
-                                <th>Action</th>
+                                <th style="text-align: center;"><b>No</b></th>
+                                <th style="text-align: center;"><b>Golongan</b></th>
+                                <th style="text-align: center;"><b>Action</b></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,9 +28,9 @@
                             $no = 1;
                             foreach ($data['golongan'] as $golongan) : ?>
                                 <tr>
-                                    <td><?= $no++; ?></td>
-                                    <td><?= $golongan['golongan']; ?></td>
-                                    <td>
+                                    <td style="text-align: center;"><?= $no++; ?></td>
+                                    <td style="text-align: center;"><?= $golongan['golongan']; ?></td>
+                                    <td style="text-align: center;">
                                         <button type="button" class="btn btn-primary golongan-edit-btn" data-bs-toggle="modal" data-bs-target="#edit-golongan" value="<?= $golongan['id_golongan']; ?>">
                                             Edit
                                         </button>
@@ -40,6 +40,8 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <br><br>
+                    <a href="<?= BASEURL; ?>" class="btn btn-warning">Kembali</a>
                 </div>
             </div>
         </div>

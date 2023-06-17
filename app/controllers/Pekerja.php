@@ -18,7 +18,7 @@ class Pekerja extends Controller
         $data['golongan'] = $this->model('M_pekerja')->getGolongan();
         $data['pekerjaan'] = $this->model('M_pekerja')->getPekerjaan();
 
-        $data['pekerja'] = $this->model('M_pekerja')->detailpekerja($id);
+        $data['pekerja'] = $this->model('M_pekerja')->detailPekerja($id);
 
         $this->view('templates/header');
         $this->view('pekerja/detail-pekerja', $data);
@@ -78,23 +78,29 @@ class Pekerja extends Controller
         echo json_encode($detail);
     }
 
-    public function updatepekerja()
+    public function updatePekerja()
     {
         $data = $_POST;
         $id = $data['id_pegawai'];
 
-        $old_data = $this->model('M_pekerja')->detailpekerja($id);
+        $old_data = $this->model('M_pekerja')->detailPekerja($id);
         $compare = array_diff($data, $old_data);
 
-        $column = "";
-        foreach ($compare as $col => $val) {
-            $column .= $col . " = " . "'$val', ";
-        }
-        $trimmed = rtrim($column, ', ');
+        if ($compare == null) {
+            echo json_encode(300);
+        } else {
+            $column = "";
+            foreach ($compare as $col => $val) {
+                $column .= $col . " = " . "'$val', ";
+            }
+            $trimmed = rtrim($column, ', ');
 
-        if ($this->model('M_pekerja')->updatepekerja($trimmed, $id) > 0) {
-            header('Location: ' . BASEURL . '/Pekerja/index');
-            exit;
+            try {
+                $this->model('M_pekerja')->updatePekerja($trimmed, $id);
+                echo json_encode(100);
+            } catch (\Throwable $th) {
+                echo json_encode(200);
+            }
         }
     }
 }

@@ -1,10 +1,10 @@
-<section class="container">
+<section class="content">
     <div class="row">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="text-right">
-                        <h1><b>Seksi</b></h1>
+                    <div class="text-center">
+                        <h1 style="margin-top: 50px;"><b>Seksi</b></h1>
                     </div>
                 </div>
             </div>
@@ -16,13 +16,13 @@
                     <br>
                     <br>
                     <table class="table">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
-                                <th>No</th>
-                                <th>Seksi</th>
-                                <th>Unit</th>
-                                <th>Departemen</th>
-                                <th>Action</th>
+                                <th style="text-align: center;"><b>No</b></th>
+                                <th style="text-align: center;"><b>Seksi</b></th>
+                                <th style="text-align: center;"><b>Unit</b></th>
+                                <th style="text-align: center;"><b>Departemen</b></th>
+                                <th style="text-align: center;"><b>Action</b></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,12 +30,12 @@
                             $no = 1;
                             foreach ($data['seksi'] as $row) : ?>
                                 <tr>
-                                    <td><?= $no++; ?></td>
-                                    <td class="seksi"><?= $row['seksi']; ?></td>
-                                    <td class="unit"><?= $row['unit']; ?></td>
-                                    <td><?= $row['departemen']; ?></td>
+                                    <td style="text-align: center;"><?= $no++; ?></td>
+                                    <td class="seksi" style="text-align: center;"><?= $row['seksi']; ?></td>
+                                    <td class="unit" style="text-align: center;"><?= $row['unit']; ?></td>
+                                    <td style="text-align: center;"><?= $row['departemen']; ?></td>
                                     <td class="departemen" hidden><?= $row['id_dep']; ?></td>
-                                    <td>
+                                    <td style="text-align: center;">
                                         <button type="button" class="btn btn-primary seksi-edit-btn" data-bs-toggle="modal" data-bs-target="#edit-seksi" value="<?= $row['id_seksi']; ?>" onclick="toogleModal(this)">
                                             Edit
                                         </button>
@@ -45,6 +45,8 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <br><br>
+                    <a href="<?= BASEURL; ?>" class="btn btn-warning">Kembali</a>
                 </div>
             </div>
         </div>

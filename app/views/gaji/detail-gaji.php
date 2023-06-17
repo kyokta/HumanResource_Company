@@ -1,10 +1,10 @@
-<section class="container">
+<section class="content">
     <div class="row">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="text">
-                        <h1><b>Detail Gaji</b></h1>
+                    <div class="text-center">
+                        <h1 style="margin-top: 50px;"><b>Detail Gaji</b></h1>
                     </div>
                 </div>
             </div>
@@ -14,14 +14,14 @@
                         <div class="col-md-12">
                             <table>
                                 <tr>
-                                    <td>ID Pegawai</td>
-                                    <td>:</td>
-                                    <td><?= $data['id']; ?></td>
+                                    <td><b>ID Pegawai</b></td>
+                                    <td><b>:</b></td>
+                                    <td><b><?= $data['id']; ?></b></td>
                                 </tr>
                                 <tr>
-                                    <td>Nama Pegawai</td>
-                                    <td>:</td>
-                                    <td><?= $data['nama']; ?></td>
+                                    <td><b>Nama Pegawai</b></td>
+                                    <td><b>:</b></td>
+                                    <td><b><?= $data['nama']; ?></b></td>
                                 </tr>
                             </table>
                         </div>
@@ -31,12 +31,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table">
-                                <thead>
+                                <thead class="table-dark">
                                     <tr>
-                                        <td>No</td>
-                                        <td>Bulan</td>
-                                        <td>Tahun</td>
-                                        <td>Jumlah Gaji</td>
+                                        <th style="text-align: center;"><b>No</b></th>
+                                        <th style="text-align: center;"><b>Bulan</b></th>
+                                        <th style="text-align: center;"><b>Tahun</b></th>
+                                        <th style="text-align: center;"><b>Jumlah Gaji</b></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,10 +44,10 @@
                                     $no = 1;
                                     foreach ($data['gaji'] as $gaji):?>
                                     <tr>
-                                        <td><?= $no++; ?></td>
-                                        <td><?= $gaji['bulan']; ?></td>
-                                        <td><?= $gaji['tahun']; ?></td>
-                                        <td><?= $gaji['jumlah']; ?></td>
+                                        <td style="text-align: center;"><?= $no++; ?></td>
+                                        <td style="text-align: center;"><?= $gaji['bulan']; ?></td>
+                                        <td style="text-align: center;"><?= $gaji['tahun']; ?></td>
+                                        <td style="text-align: center;"><?= $gaji['jumlah']; ?></td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
