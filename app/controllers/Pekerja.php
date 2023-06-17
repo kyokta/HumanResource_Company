@@ -42,7 +42,7 @@ class Pekerja extends Controller
         $data = $_POST;
         $kode_jabatan = $this->model('M_pekerja')->getKodeJabatan($data['jabatan'])['kd_jabatan'];
         $last_id = $this->model('M_pekerja')->getLastId($kode_jabatan);
-        
+
         if ($last_id) {
             $lastnum = substr($last_id['id_pegawai'], 1, 4);
             $new_id = $kode_jabatan . strval($lastnum + 1);
@@ -53,35 +53,48 @@ class Pekerja extends Controller
         $data['id_pegawai'] = $new_id;
         $data['status'] = true;
 
-        if ($this->model('M_pekerja')->insertData($data) > 0){
-            header('Location: '. BASEURL . '/Pekerja/index');
+        if ($this->model('M_pekerja')->insertData($data) > 0) {
+            header('Location: ' . BASEURL . '/Pekerja/index');
             exit;
         }
     }
 
-    public function deletepekerja(){
+    public function deletepekerja()
+    {
         $id = $_POST['id_pekerja'];
 
-        if ($this->model('M_pekerja')->deletepekerja($id) > 0){
+        if ($this->model('M_pekerja')->deletepekerja($id) > 0) {
             echo json_encode(100);
         } else {
             echo json_encode(200);
         }
     }
 
-    public function getDetail(){
+    public function getDetail()
+    {
         $id = $_POST['id_pekerja'];
 
         $detail = $this->model('M_pekerja')->getDetail($id);
         echo json_encode($detail);
     }
-    
-    public function updatepekerja(){
+
+    public function updatepekerja()
+    {
         $data = $_POST;
         $id = $data['id_pegawai'];
-        
-        $old_data = $this->model('M_pekerja')->getDetail($id)[0];
-        $compare = array_diff($old_data, $data);
-        print_r($compare);
+
+        $old_data = $this->model('M_pekerja')->detailpekerja($id);
+        $compare = array_diff($data, $old_data);
+
+        $column = "";
+        foreach ($compare as $col => $val) {
+            $column .= $col . " = " . "'$val', ";
+        }
+        $trimmed = rtrim($column, ', ');
+
+        if ($this->model('M_pekerja')->updatepekerja($trimmed, $id) > 0) {
+            header('Location: ' . BASEURL . '/Pekerja/index');
+            exit;
+        }
     }
 }

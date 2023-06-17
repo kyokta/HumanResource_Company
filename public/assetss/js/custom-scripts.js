@@ -112,12 +112,13 @@ $(document).ready(function(){
              confirmButtonText: 'Ya'
            }).then((result) => {
              if (result.isConfirmed) {
-                 form.submit()
-                 Swal.fire(
-                     'Berhasil',
-                     'Data telah berhasil diperbaharui',
-                     'success'
-                 )
+                form.submit()
+                Swal.fire(
+                    'Berhasil',
+                    'Data telah berhasil diperbaharui',
+                    'success'
+                )
+                location.reload()
              }
          })
      })
@@ -348,6 +349,32 @@ $(document).ready(function(){
                         }
                     }
                 })
+            }
+        })
+    })
+})
+
+// Gaji
+$(document).ready(function(){
+    $('.gaji-detail-btn').on('click', function(){
+        var id = $(this).val()
+        $.ajax({
+            type: 'post',
+            url: url + 'Gaji/detailGaji',
+            dataType: 'json',
+            data: {
+                id_pegawai: id
+            }, success: function(data){
+                $.each(data, function(index, rowData) {
+                    var row = $("<tr></tr>");
+                    
+                    $.each(rowData, function(key, value) {
+                        var cell = $("<td></td>").text(value);
+                        row.append(cell);
+                    });
+                    
+                    $("#detail-gaji").append(row);
+                });
             }
         })
     })

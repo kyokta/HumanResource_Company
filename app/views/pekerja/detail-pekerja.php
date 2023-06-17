@@ -22,11 +22,11 @@
                                     </div>
                                     <div class="form-group" style="padding: 10px 0px;">
                                         <label for="tmp_lahir">Tempat Lahir</label>
-                                        <input type="text" class="form-control" style="width: 400px" name="tmp_lahir" placeholder="Tempat Lahir" value="<?= $data['pekerja']['tempat_lahir']; ?>" required>
+                                        <input type="text" class="form-control" style="width: 400px" name="tempat_lahir" placeholder="Tempat Lahir" value="<?= $data['pekerja']['tempat_lahir']; ?>" required>
                                     </div>
                                     <div class="form-group" style="padding: 10px 0px;">
                                         <label for="tgl_lahir">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" style="width: 400px" name="tgl_lahir" placeholder="Tanggal Lahir" value="<?= $data['pekerja']['tanggal_lahir']; ?>" required>
+                                        <input type="date" class="form-control" style="width: 400px" name="tanggal_lahir" placeholder="Tanggal Lahir" value="<?= $data['pekerja']['tanggal_lahir']; ?>" required>
                                     </div>
                                     <div class="form-group" style="padding: 10px 0px;">
                                         <label for="npwp">NPWP</label>
@@ -41,7 +41,6 @@
                                     <span><b>Data Perusahaan:</b></span>
                                     <div class="form-group" style="padding: 10px 0px;">
                                         <label for="seksi">Seksi</label><br>
-                                        <input type="text" id="selected-jabatan" value="<?= $data['seksi']; ?>" hidden>
                                         <select name="seksi" style="width: 400px;" class="form-control pekerja-seksi" required>
                                             <option value=""></option>
                                             <?php foreach ($data['seksi'] as $seksi) { ?>

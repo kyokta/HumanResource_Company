@@ -103,13 +103,21 @@ class M_pekerja
         $sql = "SELECT p.id_pegawai, p.nama_lengkap, p.tempat_lahir, DATE_FORMAT(p.tanggal_lahir, '%d %M %Y') tanggal_lahir, p.alamat, p.npwp, sk.seksi, sk.unit, sk.departemen, j.jabatan, g.golongan, p2.pekerjaan 
                 from pribadi p
                 join (select s.id_seksi, s.seksi, s.unit, d.departemen from seksi s 
-                      join departemen d on d.id_departemen = s.id_seksi) as  sk on sk.id_seksi = p.seksi  
+                      join departemen d on d.id_departemen = s.departemen) as  sk on sk.id_seksi = p.seksi  
                 join jabatan j ON j.id_jabatan = p.jabatan 
                 join golongan g on g.id_golongan = p.golongan 
                 join pekerjaan p2 on p2.id_pekerjaan = p.pekerjaan
                 where p.id_pegawai = '$id'";
-
+        
         $this->db->query($sql);
         return $this->db->resultSet();
+    }
+
+    public function updatepekerja($data, $id){
+        $sql = "UPDATE pribadi set $data where id_pegawai = '$id'";
+        $this->db->query($sql);
+        $this->db->execute();
+
+        return $this->db->rowCount();
     }
 }
