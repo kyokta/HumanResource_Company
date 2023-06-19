@@ -42,13 +42,40 @@
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    foreach ($data['gaji'] as $gaji):?>
-                                    <tr>
-                                        <td style="text-align: center;"><?= $no++; ?></td>
-                                        <td style="text-align: center;"><?= $gaji['bulan']; ?></td>
-                                        <td style="text-align: center;"><?= $gaji['tahun']; ?></td>
-                                        <td style="text-align: center;"><?= $gaji['jumlah']; ?></td>
-                                    </tr>
+                                    foreach ($data['gaji'] as $gaji) : ?>
+                                        <tr>
+                                            <td style="text-align: center;"><?= $no++; ?></td>
+                                            <td style="text-align: center;">
+                                                <?php if ($gaji['bulan'] == 1) {
+                                                    echo "Januari";
+                                                } else if ($gaji['bulan'] == 2) {
+                                                    echo "Februari";
+                                                } else if ($gaji['bulan'] == 3) {
+                                                    echo "Maret";
+                                                } else if ($gaji['bulan'] == 4) {
+                                                    echo "April";
+                                                } else if ($gaji['bulan'] == 5) {
+                                                    echo "Mei";
+                                                } else if ($gaji['bulan'] == 6) {
+                                                    echo "Juni";
+                                                } else if ($gaji['bulan'] == 7) {
+                                                    echo "Juli";
+                                                } else if ($gaji['bulan'] == 8) {
+                                                    echo "Agustus";
+                                                } else if ($gaji['bulan'] == 9) {
+                                                    echo "September";
+                                                } else if ($gaji['bulan'] == 10) {
+                                                    echo "Oktober";
+                                                } else if ($gaji['bulan'] == 11) {
+                                                    echo "November";
+                                                } else {
+                                                    echo "Desember";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td style="text-align: center;"><?= $gaji['tahun']; ?></td>
+                                            <td style="text-align: center;"><?= $gaji['jumlah']; ?></td>
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
