@@ -9,8 +9,8 @@ class M_seksi {
     }
 
     public function getData(){
-        $query = "select s.id_seksi, s.seksi, s.unit, s.departemen as id_dep, d.departemen from seksi s
-        join departemen d on s.departemen = d.id_departemen";
+        $query = "SELECT s.id_seksi, s.seksi, s.unit, s.departemen as id_dep, d.departemen from seksi s
+                  join departemen d on s.departemen = d.id_departemen";
         $this->db->query($query);
         return $this->db->resultSet();
     }

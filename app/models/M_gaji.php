@@ -7,14 +7,18 @@ class M_gaji
     public function __construct()
     {
         $this->db = new Database;
+
+        $view = "CREATE or replace view jumlah_gaji as
+                 SELECT g.id_pegawai, p.nama_lengkap nama, count(g.jumlah) jumlah  from gaji g
+                 join pribadi p on p.id_pegawai = g.id_pegawai
+                 where p.status = true
+                 group by p.id_pegawai";
+        $this->db->getDB()->exec($view);
     }
 
     public function getData()
     {
-        $sql = "SELECT g.id_pegawai, p.nama_lengkap nama, count(g.jumlah) jumlah  from gaji g
-                join pribadi p on p.id_pegawai = g.id_pegawai
-                where p.status = true
-                group by p.id_pegawai";
+        $sql = "SELECT * from jumlah_gaji";
 
         $this->db->query($sql);
         return $this->db->resultSet();

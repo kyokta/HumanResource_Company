@@ -41,11 +41,11 @@ class Pekerja extends Controller
     {
         $data = $_POST;
         $kode_jabatan = $this->model('M_pekerja')->getKodeJabatan($data['jabatan'])['kd_jabatan'];
-        $last_id = $this->model('M_pekerja')->getLastId($kode_jabatan);
+        $last_id = $this->model('M_pekerja')->getLastId($kode_jabatan)['lastId'];
 
         if ($last_id) {
-            $lastnum = substr($last_id['id_pegawai'], 1, 4);
-            $new_id = $kode_jabatan . strval($lastnum + 1);
+            $lastnum = substr($last_id, 1, 4);
+            $new_id = $kode_jabatan . sprintf('%04d', $lastnum + 1);
         } else {
             $new_id = $kode_jabatan . '0001';
         }

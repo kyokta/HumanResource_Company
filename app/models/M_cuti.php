@@ -7,6 +7,22 @@ class M_cuti
     public function __construct()
     {
         $this->db = new Database;
+
+        $view = "CREATE or REPLACE view namaPekerja as
+                 SELECT id_pegawai, concat(id_pegawai, ' - ', nama_lengkap) nama  from pribadi where status = true";
+
+        $prosedur = "CREATE OR REPLACE PROCEDURE InsertCuti(
+                         IN idpegawai varchar(5),
+                         IN tanggalcuti DATE,
+                         IN alasan varchar(50)
+                     )
+                     BEGIN
+                         INSERT INTO cuti (id_pekerja, tanggal_cuti, alasan)
+                         VALUES (idpegawai, tanggalcuti, alasan);
+                     END";
+
+        $this->db->getDB()->exec($view);
+        $this->db->getDB()->exec($prosedur);
     }
 
     public function getData()
@@ -22,7 +38,7 @@ class M_cuti
 
     public function getNama()
     {
-        $sql = "SELECT id_pegawai, concat(id_pegawai, ' - ', nama_lengkap) nama  from pribadi where status = true";
+        $sql = "SELECT * from namaPekerja";
 
         $this->db->query($sql);
         return $this->db->resultSet();
@@ -34,8 +50,7 @@ class M_cuti
         $tanggal = $data['tanggal_cuti'];
         $alasan = $data['alasan'];
 
-        $sql = "INSERT INTO cuti(id_pekerja, tanggal_cuti, alasan)
-                values ('$id', '$tanggal','$alasan')";
+        $sql = "CALL InsertCuti('$id', '$tanggal', '$alasan');";
 
         $this->db->query($sql);
         $this->db->execute();
@@ -43,15 +58,17 @@ class M_cuti
         return $this->db->rowCount();
     }
 
-    public function detailCuti($id){
-        $sql = "select * from cuti c where id_pekerja = '$id'";
+    public function detailCuti($id)
+    {
+        $sql = "SELECT * from cuti c where id_pekerja = '$id'";
 
         $this->db->query($sql);
         return $this->db->resultSet();
     }
 
-    public function getIdentitas($id){
-        $sql = "select id_pegawai, nama_lengkap from pribadi p where id_pegawai = '$id'";
+    public function getIdentitas($id)
+    {
+        $sql = "SELECT id_pegawai, nama_lengkap from pribadi p where id_pegawai = '$id'";
 
         $this->db->query($sql);
         return $this->db->single();
